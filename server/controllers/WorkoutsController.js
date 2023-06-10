@@ -4,7 +4,8 @@ const mongoose = require("mongoose")
 class WorkoutsController {
     // get all workouts
     async index(req, res) {
-        const workouts = await Workouts.find({}).sort({ createdAt: -1 })
+        const user_id = req.user._id
+        const workouts = await Workouts.find({ user_id }).sort({ createdAt: -1 })
 
         res.status(200).json(workouts)
     }
@@ -44,8 +45,10 @@ class WorkoutsController {
             return res.status(400).json({ error: "Please fill in all the fields", emptyField })
         }
     
+        // Add document to database
         try {
-            const workout = await Workouts.create({title, load, reps})
+            const user_id = req.user._id
+            const workout = await Workouts.create({title, load, reps, user_id})
             res.status(200).json(workout)
         } catch(error) {
             res.status(400).json({error: error.message})

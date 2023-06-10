@@ -1,21 +1,24 @@
 const express = require("express")
 const WorkoutsController = require("../controllers/WorkoutsController")
+const UserController = require("../controllers/UserController")
+const RequireAuth = require("../middleware/RequireAuth")
 
 const router = express.Router()
 
-// GET all workouts
-router.get('/', WorkoutsController.index)
+// Workout routes (require authentication)
+router
+    .route("/workouts")
+    .get(RequireAuth, WorkoutsController.index)
+    .post(RequireAuth, WorkoutsController.store)
 
-// GET single workout
-router.get("/:id", WorkoutsController.show)
+router
+    .route("/workouts/:id")
+    .get(RequireAuth, WorkoutsController.show)
+    .delete(RequireAuth, WorkoutsController.destroy)
+    .patch(RequireAuth, WorkoutsController.update)
 
-// POST a new workout
-router.post('/', WorkoutsController.store)
-
-// DELETE a workout
-router.delete("/:id", WorkoutsController.destroy)
-
-// UPDATE a workout
-router.patch("/:id", WorkoutsController.update)
+// Login and sign up routes (no authentication required)
+router.post("/user/login", UserController.login)
+router.post("/user/signup", UserController.signup)
 
 module.exports = router

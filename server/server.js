@@ -19,7 +19,7 @@ server.use(function(req, res, next) {
 })
 
 // Routes
-server.use("/api/workouts", router)
+server.use("/api", router)
 
 // Connect to database
 mongoose.connect(MONG_URI)
