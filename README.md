@@ -1,6 +1,6 @@
 # Workouts MERN App
 
-![Workouts MERN App](https://github.com/WildanFrananda/workouts-MERN-app/raw/main/frontend/public/logo.png)
+![Workouts MERN App](https://github.com/WildanFrananda/workouts-MERN-app/blob/main/client/public/favicon.ico)
 
 This repository contains the source code for a Workouts MERN (MongoDB, Express.js, React.js, Node.js) application. The app allows users to track their workouts, including exercises performed, sets, repetitions, and weights. It provides a user-friendly interface for managing and visualizing workout data.
 
